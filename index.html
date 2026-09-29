@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>NEMESIS Custom Objectives</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- QR 생성 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <!-- QR 스캔 -->
+    <script src="https://unpkg.com/html5-qrcode" defer></script>
+
+    <script src="app.js" defer></script>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- =========================
+         시작 화면
+    ========================== -->
+
+    <section id="setupScreen" class="screen">
+
+        <div class="logo">
+            NEMESIS
+        </div>
+
+        <div class="subtitle">
+            CUSTOM OBJECTIVES
+        </div>
+
+        <div class="card">
+
+            <h2>게임 준비</h2>
+
+            <p class="description">
+                플레이어 수만큼 개인 목표를 무작위로 배정합니다.
+            </p>
+
+            <label for="playerCount">
+                플레이어 수
+            </label>
+
+            <select id="playerCount">
+
+                <option value="1">1명</option>
+                <option value="2">2명</option>
+                <option value="3">3명</option>
+                <option value="4">4명</option>
+                <option value="5">5명</option>
+
+            </select>
+
+            <button id="startButton">
+                🔒 비밀 목표 생성
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         룰마스터 QR 화면
+    ========================== -->
+
+    <section id="qrScreen" class="screen hidden">
+
+        <div class="playerNumber">
+            PLAYER <span id="currentPlayer">1</span>
+        </div>
+
+        <div class="card qrCard">
+
+            <h2>
+                이 플레이어에게<br>
+                QR을 보여주세요
+            </h2>
+
+            <p class="warning">
+                ⚠️ 다른 플레이어가 QR을<br>
+                보지 않도록 주의하세요.
+            </p>
+
+            <div id="qrcode"></div>
+
+            <p class="instruction">
+                플레이어 <strong id="qrPlayerNumber">1</strong>이<br>
+                자신의 휴대폰으로 QR을 촬영하세요.
+            </p>
+
+            <button id="nextPlayerButton">
+                다음 플레이어 →
+            </button>
+
+        </div>
+
+        <div class="progress">
+            <span id="progressText">
+                1 / 1
+            </span>
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         목표 직접 확인 화면
+         (테스트/QR 없는 경우)
+    ========================== -->
+
+    <section id="objectiveScreen" class="screen hidden">
+
+        <div class="playerNumber">
+            PRIVATE OBJECTIVE
+        </div>
+
+        <div class="card">
+
+            <div id="objectivePlayer"
+                 class="objectivePlayer">
+                PLAYER 1
+            </div>
+
+            <h2 id="objectiveTitle">
+                개인 목표
+            </h2>
+
+            <div id="objectiveText"
+                 class="objectiveText">
+            </div>
+
+            <button id="hideObjectiveButton">
+                🔒 목표 숨기기
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         QR 스캐너 화면
+    ========================== -->
+
+    <section id="scannerScreen" class="screen hidden">
+
+        <div class="playerNumber">
+            QR SCANNER
+        </div>
+
+        <div class="card">
+
+            <h2>
+                📷 개인 목표 확인
+            </h2>
+
+            <p class="description">
+                자신의 QR 코드를 촬영하세요.
+            </p>
+
+            <div id="reader"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         목표가 없을 때
+    ========================== -->
+
+    <section id="errorScreen" class="screen hidden">
+
+        <div class="card">
+
+            <h2>
+                ⚠️ 잘못된 QR 코드
+            </h2>
+
+            <p id="errorMessage">
+                올바른 네메시스 목표 QR 코드가 아닙니다.
+            </p>
+
+            <button id="errorBackButton">
+                처음으로
+            </button>
+
+        </div>
+
+    </section>
+
+</div>
+
+</body>
+</html>
